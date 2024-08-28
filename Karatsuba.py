@@ -1,30 +1,16 @@
 
 def karatsuba(x : str, y : str) -> int:
-    n = len(x)
-    ny = len(y)
-    # Checking if lengths differ and making them equal if so
-    # Add zeros to the front of the string to make them equal
-    if (ny > n):
-        dif = ny - n
-        zero = '0'
-        for _ in range(dif):
-            x = zero + x
-        n = ny
-    # Checking if lengths differ and making them equal if so
-    # Add zeros to the front of the string to make them equal
-    elif (n > ny):
-        dif = n - ny
-        zero = '0'
-        for _ in range(dif):
-            y = zero + y
-    # Checking if length of numbers is odd, which doesn't work for this algorithm
+    # Make x and y equal lengths
+    n = max(len(x), len(y))
+    x = x.zfill(n)
+    y = y.zfill(n)
+    # Checking if length of numbers is odd, and making them even
     if n != 1 and (n % 2 == 1):
-            zero = '0'
-            y = zero + y
-            x = zero + x
+            y = '0' + y
+            x = '0' + x
             n += 1
     # Base case
-    if n == 1 and ny == 1:
+    if n == 1:
         return int(x) * int(y)
     # Recursive case
     else:
