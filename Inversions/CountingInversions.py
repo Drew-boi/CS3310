@@ -1,3 +1,5 @@
+import sys
+
 def merge(lyst1 : list, lyst2 : list ) -> list:
     m = len(lyst1)
     l = len(lyst2)
@@ -38,20 +40,21 @@ def mergesort(lyst, inversions = 0):
     return lyst, inversions
 
 def main():
-    l1 = [5,4,0,4,4]
-    l2 = [1,4,1,0,8]
-    l3 = [7,9,2,9,4]
-    l4 = [2,9,6,4,9]
-    l5 = [2,5,2,6,0]
-    l6 = [6,0,6,6,0]
-    l7 = [2,9,9,5]
-    l8 = [5,3,7,7,7]
-    l9 = [4,9,6,8,9]   
-    l10 = [9,0,8,3]
-    
-    test_lists = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10]
-    
+    # commandline: python3 CountingInversions.txt (filename)
+    try:
+        filename = sys.argv[1]
+        print(filename)
+    except IndexError:
+        print("Usage: python3 CountingInversions.txt <filename>")
+        return
+    with open(filename) as f:
+        test_lists = []
+        for line in f:
+            line = line.strip()
+            char_array = [c for c in line]
+            test_lists.append(char_array)
     for test_list in test_lists:
+        # print(f"Unsorted List: {test_list}", end="   ") # use this line if you want to check the unsorted list
         sorted_list, inversions = mergesort(test_list)
         print(f"Sorted list: {sorted_list}, Inversions: {inversions}")
     
