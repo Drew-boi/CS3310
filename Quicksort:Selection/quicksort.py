@@ -15,7 +15,12 @@ def pivotMedian(A, start, end):
     return pivselect[1][1]
 
 def pivotRandom(A, start, end):
-    random.randrange()
+    rand1 = random.randint(start, end)
+    rand2 = random.randint(start, end)
+    rand3 = random.randint(start, end)
+    pivselect = [(A[rand1], rand1), (A[rand2], rand2), (A[rand3], rand3)]
+    pivselect.sort(key=lambda x: x[0])
+    return pivselect[1][1]
 
 def partition(A, start, end):
     p = A[start]
@@ -71,6 +76,12 @@ def main():
     A = copy.deepcopy(copyA)
     comparisons = qksrt(A, pivotMedian)
     print(f"Median pivot comparisons: {comparisons}")
+    A = copy.deepcopy(copyA)
+    fullcomparisons = 0
+    for _ in range(10):
+        fullcomparisons += qksrt(A, pivotRandom)
+    comparisons = fullcomparisons//10
+    print(f"Random pivot comparisons: {comparisons}")
 
 if __name__ == "__main__":
     main()
