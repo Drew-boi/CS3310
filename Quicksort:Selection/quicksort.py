@@ -78,9 +78,10 @@ def main():
     print(f"Median pivot comparisons: {comparisons}")
     A = copy.deepcopy(copyA)
     fullcomparisons = 0
-    for _ in range(10):
+    n = 10
+    for _ in range(n):
         fullcomparisons += qksrt(A, pivotRandom)
-    comparisons = fullcomparisons//10
+    comparisons = fullcomparisons//n
     print(f"Random pivot comparisons: {comparisons}")
 
 if __name__ == "__main__":
